@@ -65,4 +65,35 @@ export default class PathFinder {
   calculate() {
     console.log('calculate');
   }
+
+  resumen(path) {
+    console.log('resumen');
+    const result = {
+      path: path,
+      iterations: this.iterationsSoFar,
+      points: path.length,
+      cost: this.getCostForPath(path),
+    };
+
+    return result;
+  }
+
+  getCostForPath(path) {
+    let totalCost = 0;
+    for (let i = 0; i < path.length; i++) {
+      totalCost += this.getTileCost(path[i].x, path[i].y);
+    }
+    return totalCost;
+  }
+
+  getTileCost(x, y) {
+    if (this.collisionGrid.length > 0) {
+      return (
+        (this.pointsToCost[y] && this.pointsToCost[y][x]) ||
+        this.costMap[this.collisionGrid[y][x]]
+      );
+    } else {
+      return 1;
+    }
+  }
 }

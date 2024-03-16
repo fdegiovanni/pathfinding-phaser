@@ -151,6 +151,12 @@ export default class Game extends Phaser.Scene {
         console.log(path);
         this.moveCharacter(path);
         this.fillPath(algorithm, path);
+        const resume = finder.resumen(path);
+        document.getElementById('resume').innerText = ``;
+        document.getElementById('resume').innerText = `
+        Pasos: ${resume.points}
+        Iteraciones: ${resume.iterations}
+        Costo: ${resume.cost}`;
       }
     });
     finder.calculate();

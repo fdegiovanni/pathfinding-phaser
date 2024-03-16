@@ -206,13 +206,6 @@ export default class AStar extends PathFinder {
     }
   }
 
-  getTileCost(x, y) {
-    return (
-      (this.pointsToCost[y] && this.pointsToCost[y][x]) ||
-      this.costMap[this.collisionGrid[y][x]]
-    );
-  }
-
   isTileWalkable(collisionGrid, acceptableTiles, x, y, sourceNode) {
     const directionalCondition =
       this.directionalConditions[y] && this.directionalConditions[y][x];
